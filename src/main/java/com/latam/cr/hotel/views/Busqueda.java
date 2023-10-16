@@ -27,6 +27,9 @@ import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 public class Busqueda extends JFrame {
 
 	private JPanel contentPane;
@@ -35,8 +38,24 @@ public class Busqueda extends JFrame {
 	private JTable tbHuespedes;
 	private JTable tbReservas;
 	BusquedaController busquedaController = new BusquedaController();
+	int xMouse, yMouse;
 
 	public Busqueda() {
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int y = e.getYOnScreen();
+				int x = e.getXOnScreen();
+				setLocation(x-xMouse,y-yMouse);
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
 		setUndecorated(true);
 		busquedaController.abrirConexion();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

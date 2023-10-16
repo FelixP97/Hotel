@@ -16,14 +16,33 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.latam.cr.hotel.controller.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 public class MenuUsuario extends JFrame {
 
 	private JPanel contentPane;
 	MenuUsuarioController time =new  MenuUsuarioController();
+	int xMouse, yMouse;
 	public MenuUsuario() {
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int y = e.getYOnScreen();
+				int x = e.getXOnScreen();
+				setLocation(x-xMouse,y-yMouse);
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 960, 645);
+		setBounds(100, 100, 960, 607);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

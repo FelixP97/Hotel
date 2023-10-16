@@ -19,17 +19,35 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.latam.cr.hotel.controller.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField txtContrasena;
 	UsuarioController usuario = new UsuarioController();
-
+	int xMouse, yMouse;
 	public Login() {
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int y = e.getYOnScreen();
+				int x = e.getXOnScreen();
+				setLocation(x-xMouse,y-yMouse);
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 810, 570);
+		setBounds(100, 100, 810, 543);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

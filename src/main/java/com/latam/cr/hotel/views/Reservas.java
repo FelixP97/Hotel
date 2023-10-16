@@ -19,15 +19,34 @@ import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import com.latam.cr.hotel.controller.ReservaController;
 import java.sql.Date;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 public class Reservas extends JFrame {
 
 	private JPanel contentPane;
 	ReservaController reservaController = new ReservaController();
 	private String precio;
+	int xMouse, yMouse;
 	public Reservas() {
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int y = e.getYOnScreen();
+				int x = e.getXOnScreen();
+				setLocation(x-xMouse,y-yMouse);
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 925, 595);
+		setBounds(100, 100, 925, 567);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

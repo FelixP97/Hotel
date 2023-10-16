@@ -20,6 +20,9 @@ import java.sql.Date;
 import java.awt.event.ActionEvent;
 import com.latam.cr.hotel.controller.RegistroHuespedController;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 public class RegistroHuesped extends JFrame {
 
 	private JPanel contentPane;
@@ -28,10 +31,26 @@ public class RegistroHuesped extends JFrame {
 	private JTextField txtTelefono;
 	private JTextField txtReserva;
 	RegistroHuespedController registroHuespedController = new RegistroHuespedController();
+	int xMouse, yMouse;
 	public RegistroHuesped() {
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int y = e.getYOnScreen();
+				int x = e.getXOnScreen();
+				setLocation(x-xMouse,y-yMouse);
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 930, 670);
+		setBounds(100, 100, 930, 633);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
