@@ -29,6 +29,7 @@ public class RegistroHuesped extends JFrame {
 	private JTextField txtReserva;
 	RegistroHuespedController registroHuespedController = new RegistroHuespedController();
 	public RegistroHuesped() {
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 930, 670);
 		contentPane = new JPanel();
@@ -53,6 +54,22 @@ public class RegistroHuesped extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("E:\\Proyectos\\JAVA\\Hotel_Alura\\hotel\\src\\main\\resources\\imagenes\\Ha-100px.png"));
 		lblNewLabel_1.setBounds(198, 10, 100, 108);
 		panel.add(lblNewLabel_1);
+		
+		JButton btnRegresar = new JButton("<");
+		btnRegresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistroHuesped.this.setVisible(false);
+				RegistroHuesped.this.dispose();
+				MenuUsuario menuUsuario = new MenuUsuario();
+				menuUsuario.setVisible(true);
+			}
+		});
+		btnRegresar.setForeground(Color.WHITE);
+		btnRegresar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnRegresar.setBorder(null);
+		btnRegresar.setBackground(new Color(100, 149, 237));
+		btnRegresar.setBounds(26, 20, 52, 21);
+		panel.add(btnRegresar);
 		
 		JLabel lblNewLabel_2 = new JLabel("REGISTRO HUÉSPED");
 		lblNewLabel_2.setForeground(new Color(30, 144, 255));
@@ -177,5 +194,20 @@ public class RegistroHuesped extends JFrame {
 		txtReserva.setBorder(null);
 		txtReserva.setBounds(554, 498, 211, 27);
 		contentPane.add(txtReserva);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cerrarApp();
+			}
+		});
+		btnSalir.setIcon(new ImageIcon("E:\\Proyectos\\JAVA\\Hotel_Alura\\hotel\\src\\main\\resources\\imagenes\\cerrar-24px.png"));
+		btnSalir.setBorder(null);
+		btnSalir.setBackground(Color.WHITE);
+		btnSalir.setBounds(889, 10, 31, 26);
+		contentPane.add(btnSalir);
+	}
+	public void cerrarApp() {
+		this.dispose();
 	}
 }

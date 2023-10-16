@@ -37,6 +37,7 @@ public class Busqueda extends JFrame {
 	BusquedaController busquedaController = new BusquedaController();
 
 	public Busqueda() {
+		setUndecorated(true);
 		busquedaController.abrirConexion();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 925, 610);
@@ -179,6 +180,34 @@ public class Busqueda extends JFrame {
 		model.addColumn("VALOR");
 		model.addColumn("FORMA PAGO");
 		tbReservas.setModel(model);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cerrarApp();
+			}
+		});
+		btnSalir.setIcon(new ImageIcon("E:\\Proyectos\\JAVA\\Hotel_Alura\\hotel\\src\\main\\resources\\imagenes\\cerrar-24px.png"));
+		btnSalir.setBorder(null);
+		btnSalir.setBackground(Color.WHITE);
+		btnSalir.setBounds(884, 10, 31, 26);
+		contentPane.add(btnSalir);
+		
+		JButton btnRegresar = new JButton("<");
+		btnRegresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Busqueda.this.setVisible(false);
+				Busqueda.this.dispose();
+				MenuUsuario menuUsuario = new MenuUsuario();
+				menuUsuario.setVisible(true);
+			}
+		});
+		btnRegresar.setForeground(new Color(30, 144, 255));
+		btnRegresar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnRegresar.setBorder(null);
+		btnRegresar.setBackground(new Color(255, 255, 255));
+		btnRegresar.setBounds(23, 10, 52, 21);
+		contentPane.add(btnRegresar);
 		mostrarReservas();
 	}
 	public void mostrarHuespedes() {
@@ -246,5 +275,9 @@ public class Busqueda extends JFrame {
 		int fila = (tbReservas.getSelectedRow());
 		Long id = Long.parseLong(this.tbReservas.getValueAt(fila, 0).toString());
 		busquedaController.removerReserva(id);
+	}
+	public void cerrarApp() {
+		busquedaController.cerrarConexion();
+		this.dispose();
 	}
 }
