@@ -59,7 +59,7 @@ public class Busqueda extends JFrame {
 		setUndecorated(true);
 		busquedaController.abrirConexion();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 925, 610);
+		setBounds(100, 100, 925, 572);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
