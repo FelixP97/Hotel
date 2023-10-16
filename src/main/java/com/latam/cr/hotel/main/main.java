@@ -4,8 +4,8 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		Login login = new Login();
-		login.setVisible(true);
+		MenuPrincipal principal = new MenuPrincipal();
+		principal.setVisible(true);
 	}
 
 }

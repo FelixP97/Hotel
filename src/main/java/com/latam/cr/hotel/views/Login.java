@@ -39,7 +39,7 @@ public class Login extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(100, 149, 237));
-		panel.setBounds(467, 0, 329, 543);
+		panel.setBounds(467, 0, 343, 543);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		JLabel lblNewLabel = new JLabel("");
